@@ -32,7 +32,7 @@ require_once("header.php");
 
 require_once("../connectionclass.php");
 $obj=new ConnectionClass();
-$qry="SELECT * FROM scrap_request s join company c on(c.cmp_id = s.cmp_id) where status!='completed' and user_email='$username'";
+$qry="SELECT * FROM scrap_request s join company c on(c.cmp_id = s.cmp_id) where status='completed' and user_email='$username'";
 
 $requests= $obj->GetTable($qry);
  
@@ -47,7 +47,7 @@ $requests= $obj->GetTable($qry);
                       <th>Booking Date</th>
                       <th>Scheduled Date</th>
                       <th>Company</th>
-                      <th>Verification Code</th>
+                      <th>Remarks</th>
                       <th>Status</th>
                     </tr>
                   </thead>
@@ -65,7 +65,7 @@ foreach($requests as $c){
                       <td><?php echo $c["booking_date"]  ?></td>
                       <td><?php echo $c["schedule_date"]  ?></td>
                       <td><?php echo $c["full_name"]  ?></td>
-                      <td class="text-center"><big class='text-danger'><?php echo $c["code"]  ?></big></td>
+                      <td><?php echo $c["remarks"]  ?></td>
                       <td><?php echo $c["status"]  ?></td>
                    
                     </tr>
